@@ -1,5 +1,3 @@
 namespace Dominio.Abstracciones;
 
-public interface IEventoDominio
-{
-}
+public interface IEventoDominio { }

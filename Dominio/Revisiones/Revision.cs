@@ -1,9 +1,10 @@
+using Dominio.Abstracciones;
+using Dominio.Revisiones.Eventos;
+
 namespace Dominio.Revisiones;
 
-public sealed class Revision
+public sealed class Revision : Entidad
 {
-    public Guid Id { get; private set; }
-
     public Guid VehiculoId { get; private set; }
 
     public DateTime FechaRevision { get; private set; }
@@ -18,7 +19,12 @@ public sealed class Revision
 
     public Guid InspectorId { get; private set; }
 
-    public Revision(Guid id, Guid vehiculoId, DateTime fechaRevision, Guid inspectorId)
+    public Revision(
+        Guid id,
+        Guid vehiculoId,
+        DateTime fechaRevision,
+        Guid inspectorId
+    )
     {
         Id = id;
         VehiculoId = vehiculoId;
@@ -41,10 +47,18 @@ public sealed class Revision
         }
 
         Estado = EstadoRevision.RevisionAprobada;
+
+        AgregarEventoDominio(
+            new RevisionAprobadaEventoDominio(Id)
+        );
     }
 
     public void Rechazar()
     {
         Estado = EstadoRevision.RevisionNoAprobada;
+
+        AgregarEventoDominio(
+            new RevisionRechazadaEventoDominio(Id)
+        );
     }
 }

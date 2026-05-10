@@ -8,11 +8,7 @@ public sealed class Inspector
 
     public string CodigoEmpleado { get; private set; }
 
-    public Inspector(
-        Guid id,
-        string nombre,
-        string codigoEmpleado
-    )
+    public Inspector(Guid id, string nombre, string codigoEmpleado)
     {
         Id = id;
         Nombre = nombre;

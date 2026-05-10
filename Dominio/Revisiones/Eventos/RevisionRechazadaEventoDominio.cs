@@ -2,11 +2,11 @@ using Dominio.Abstracciones;
 
 namespace Dominio.Revisiones.Eventos;
 
-public sealed class RevisionAprobadaEventoDominio : IEventoDominio
+public sealed class RevisionRechazadaEventoDominio : IEventoDominio
 {
     public Guid RevisionId { get; }
 
-    public RevisionAprobadaEventoDominio(Guid revisionId)
+    public RevisionRechazadaEventoDominio(Guid revisionId)
     {
         RevisionId = revisionId;
     }

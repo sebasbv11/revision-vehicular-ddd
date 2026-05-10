@@ -6,8 +6,7 @@ public abstract class Entidad
 
     public Guid Id { get; protected set; }
 
-    public IReadOnlyCollection<object> EventosDominio =>
-        _eventosDominio.AsReadOnly();
+    public IReadOnlyCollection<object> EventosDominio => _eventosDominio.AsReadOnly();
 
     protected void AgregarEventoDominio(object eventoDominio)
     {
