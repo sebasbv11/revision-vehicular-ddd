@@ -1,3 +1,4 @@
+using System.IO.Pipelines;
 using Dominio.Abstracciones;
 using Dominio.Revisiones.Eventos;
 
@@ -19,12 +20,7 @@ public sealed class Revision : Entidad
 
     public Guid InspectorId { get; private set; }
 
-    public Revision(
-        Guid id,
-        Guid vehiculoId,
-        DateTime fechaRevision,
-        Guid inspectorId
-    )
+    public Revision(Guid id, Guid vehiculoId, DateTime fechaRevision, Guid inspectorId)
     {
         Id = id;
         VehiculoId = vehiculoId;
@@ -39,26 +35,28 @@ public sealed class Revision : Entidad
         Estado = EstadoRevision.EsperandoRevision;
     }
 
-    public void Aprobar()
+    public Resultado Aprobar()
     {
         if (!ResultadoGases || !ResultadoFrenos || !ResultadoLuces)
         {
-            throw new Exception("La revisión no puede aprobarse.");
+            return Resultado.Fallo(
+                new Error("Revision.PruebasFallidas", ErroresRevision.RevisionNoPuedeAprobarse)
+            );
         }
 
         Estado = EstadoRevision.RevisionAprobada;
 
-        AgregarEventoDominio(
-            new RevisionAprobadaEventoDominio(Id)
-        );
+        AgregarEventoDominio(new RevisionAprobadaEventoDominio(Id));
+
+        return Resultado.Exito();
     }
 
-    public void Rechazar()
+    public Resultado Rechazar()
     {
         Estado = EstadoRevision.RevisionNoAprobada;
 
-        AgregarEventoDominio(
-            new RevisionRechazadaEventoDominio(Id)
-        );
+        AgregarEventoDominio(new RevisionRechazadaEventoDominio(Id));
+
+        return Resultado.Exito();
     }
 }
