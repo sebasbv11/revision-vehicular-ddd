@@ -69,7 +69,7 @@ Implementar la capa de dominio aplicando:
 
 ## Flujo de negocio
 
-```text
+
 NoRevisado
       ↓
 EsperandoRevision
@@ -83,3 +83,7 @@ RevisionAprobada o RevisionNoAprobada
 - Regla 3: Una revisión aprobada no puede volver a “esperando”.
 - Regla 4: No se puede realizar revisión sin inspector asignado.
 - Regla 5: La placa debe tener formato válido.
+
+## Objeto de valor.
+
+- Placa
