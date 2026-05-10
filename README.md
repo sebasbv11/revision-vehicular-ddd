@@ -87,3 +87,8 @@ RevisionAprobada o RevisionNoAprobada
 ## Objeto de valor.
 
 - Placa
+
+## Eventos de dominio
+
+- RevisionAprobadaEventoDominio
+- RevisionRechazadaEventoDominio
