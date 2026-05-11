@@ -96,3 +96,19 @@ RevisionAprobada o RevisionNoAprobada
 
 - RevisionAprobadaEventoDominio
 - RevisionRechazadaEventoDominio
+
+## Procesos del dominio
+
+### 1. Gestión de revisión vehicular
+
+Este proceso permite controlar el flujo de revisión de un vehículo mediante estados como:
+- NoRevisado
+- EsperandoRevision
+- RevisionAprobada
+- RevisionNoAprobada
+
+Además, implementa reglas de negocio para validar resultados de pruebas y generar eventos de dominio cuando una revisión es aprobada o rechazada.
+
+### 2. Registro de vehículos
+
+Este proceso permite registrar vehículos y relacionarlos con propietarios. También utiliza el Value Object Placa para proteger reglas del dominio y mantener consistencia en los datos.
